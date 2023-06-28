@@ -1,3 +1,20 @@
-body{
-    background-color: blueviolet;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+
+body{
+    width: 100%;
+    height: auto;
+    background-color: blueviolet;
+    /* background-image: url(./components/assets/images/background2.jpg);
+    background-size:  100% auto;
+    background-repeat: no-repeat; */
+}
+
