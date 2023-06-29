@@ -8,10 +8,15 @@
     box-sizing: border-box;
 }
 
+body::-webkit-scrollbar{
+    display: none;
+  }
 
 body{
     width: 100%;
     height: auto;
+    overflow: hidden;
+    overflow-y: auto;
     background-color: blueviolet;
     /* background-image: url(./components/assets/images/background2.jpg);
     background-size:  100% auto;
