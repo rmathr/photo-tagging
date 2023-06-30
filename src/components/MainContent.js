@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import CharacterSelector from './CharacterSelector';
 import ImageMapper from 'react-img-mapper';
 
 import background from './assets/images/background.jpg';
@@ -41,6 +42,7 @@ const MainContent = () => {
   const screenWidth = window.innerWidth;
   const screenHeight = screen.height;
   const radius = (0.032552 * screenWidth) / 2;
+  const adjustY = -1.25 * radius + 0.07 * screenHeight;
 
   let characterCircle = (
     <div
@@ -83,6 +85,9 @@ const MainContent = () => {
     const screenWidth = window.innerWidth;
     const screenHeight = screen.height;
     const radius = (0.032552 * screenWidth) / 2;
+
+    const adjustY = -1.25 * radius + 0.07 * screenHeight;
+
     let newCircle = (
       <div
         className={`absolute rounded-full opacity-50 bg-red-600 z-10`}
@@ -91,7 +96,7 @@ const MainContent = () => {
         style={{
           width: 2 * radius,
           height: 2 * radius,
-          top: y - 1.25 * radius + 0.07 * screenHeight,
+          top: y + adjustY,
           //   top: 7380 * (screenWidth / 1920) + 0.07 * screenHeight - radius,
           left: x - radius,
           //   left: 1144 * (screenWidth / 1920) - radius,
@@ -116,8 +121,10 @@ const MainContent = () => {
       radius: 1,
     };
 
-    console.log(clickedCircle);
-    console.log(checkIfContains(clickedCircle, circle2));
+    let [x, y] = getClickCoords(e);
+
+    // console.log(clickedCircle);
+    // console.log(checkIfContains(clickedCircle, circle2));
     // const width = window.innerWidth;
     // console.log(width);
     // alert(checkIfContains(circle1, circle2));
@@ -149,24 +156,25 @@ const MainContent = () => {
   };
 
   return (
-    <div className="w-full">
-      {circle}
-      {/* {characterCircle} */}
+    <CharacterSelector radius={radius} getClickCoords={getClickCoords}>
+      <div className="w-full">
+        {circle}
+        {/* {characterCircle} */}
 
-      <img
-        src={background2}
-        id="image"
-        onClick={(e) => handleClick(e)}
-        // onClick={(e) => getMouseCoords(e)}
-        className="relative"
-        style={{ width: '100vw', height: 'auto' }}
-      />
-      {/* <svg width={'100%'} height={8000} onClick={addCircle}>
+        <img
+          src={background2}
+          id="image"
+          onClick={(e) => handleClick(e)}
+          // onClick={(e) => getMouseCoords(e)}
+          className="relative"
+          style={{ width: '100vw', height: 'auto' }}
+        />
+        {/* <svg width={'100%'} height={8000} onClick={addCircle}>
       </svg> */}
 
-      {/* <ImageMapper src={background2} map={MAP} /> */}
+        {/* <ImageMapper src={background2} map={MAP} /> */}
 
-      {/* <map name="workmap">
+        {/* <map name="workmap">
         <area
           className="border-red-600 bg-red-600 cursor-pointer"
           shape="circle"
@@ -174,7 +182,8 @@ const MainContent = () => {
           onClick={handleClick}
         />
       </map> */}
-    </div>
+      </div>
+    </CharacterSelector>
   );
 };
 
