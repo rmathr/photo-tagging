@@ -3,13 +3,14 @@ import React, { useState, Suspense } from 'react';
 import Cards from './Cards';
 // const Cards = React.lazy(() => import('./Cards'));
 
-import characters from './CharacterData';
+import characterData from './CharacterData';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 const CharacterSelector = (props) => {
   const [contextMenu, setContextMenu] = useState(null);
+  const [characters, setCharacters] = useState([...characterData]);
 
   const handleContextMenu = (event) => {
     let dim = event.target.getBoundingClientRect();
@@ -25,24 +26,31 @@ const CharacterSelector = (props) => {
     );
   };
 
-  const handleClose = () => {
+  const handleClose = (character) => {
+    const characterCircle = {
+      center: [character.xCoord, character.yCoord],
+      radius: 1,
+    };
+    props.verifyCharacter(characterCircle);
     setContextMenu(null);
   };
 
   // -------------------------------------------------------
   const charsArray = [...characters];
-  let charCards = charsArray.map((character) => (
-    <MenuItem
-      sx={{ bgcolor: 'black' }}
-      key={'' + character.xCoord + character.yCoord}
-      onClick={handleClose}
-    >
-      {' '}
-      {/* <Suspense fallback={<div>Loading...</div>}> */}
-      <Cards character={character} />
-      {/* </Suspense> */}
-    </MenuItem>
-  ));
+  let charCards = charsArray
+    .filter((character) => !character.found)
+    .map((character) => (
+      <MenuItem
+        sx={{ bgcolor: 'black' }}
+        key={'' + character.xCoord + character.yCoord}
+        onClick={() => handleClose(character)}
+      >
+        {' '}
+        {/* <Suspense fallback={<div>Loading...</div>}> */}
+        <Cards character={character} />
+        {/* </Suspense> */}
+      </MenuItem>
+    ));
 
   return (
     <div onClick={handleContextMenu} style={{ cursor: 'context-menu' }}>
