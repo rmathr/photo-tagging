@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React, { useState, Suspense } from 'react';
+
 import Cards from './Cards';
+// const Cards = React.lazy(() => import('./Cards'));
+
 import characters from './CharacterData';
 
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
 
 const CharacterSelector = (props) => {
-  const [contextMenu, setContextMenu] = React.useState(null);
+  const [contextMenu, setContextMenu] = useState(null);
 
   const handleContextMenu = (event) => {
     let dim = event.target.getBoundingClientRect();
@@ -19,14 +19,9 @@ const CharacterSelector = (props) => {
       contextMenu === null
         ? {
             mouseX: event.clientX + 2 + props.radius,
-            // mouseX: x,
-            // mouseY: y,
             mouseY: event.clientY - 6,
           }
-        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
-          // Other native context menus might behave different.
-          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
-          null
+        : null
     );
   };
 
@@ -37,9 +32,15 @@ const CharacterSelector = (props) => {
   // -------------------------------------------------------
   const charsArray = [...characters];
   let charCards = charsArray.map((character) => (
-    <MenuItem key={'' + character.xCoord + character.yCoord} onClick={handleClose}>
+    <MenuItem
+      sx={{ bgcolor: 'black' }}
+      key={'' + character.xCoord + character.yCoord}
+      onClick={handleClose}
+    >
       {' '}
+      {/* <Suspense fallback={<div>Loading...</div>}> */}
       <Cards character={character} />
+      {/* </Suspense> */}
     </MenuItem>
   ));
 
@@ -47,6 +48,7 @@ const CharacterSelector = (props) => {
     <div onClick={handleContextMenu} style={{ cursor: 'context-menu' }}>
       {props.children}
       <Menu
+        disableAutoFocusItem={true}
         open={contextMenu !== null}
         onClose={handleClose}
         anchorReference="anchorPosition"
@@ -56,14 +58,14 @@ const CharacterSelector = (props) => {
               { top: contextMenu.mouseY, left: contextMenu.mouseX }
             : undefined
         }
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
+        // anchorOrigin={{
+        //   vertical: 'bottom',
+        //   horizontal: 'left',
+        // }}
+        // transformOrigin={{
+        //   vertical: 'top',
+        //   horizontal: 'left',
+        // }}
       >
         {charCards}
       </Menu>

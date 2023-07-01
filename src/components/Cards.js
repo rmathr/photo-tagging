@@ -6,27 +6,34 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 
 export default function Cards(props) {
+  const character = props.character;
+  // console.log(props);
+
   return (
     <Card
       orientation="horizontal"
       variant="outlined"
-      sx={{ width: 260, bgcolor: 'background.body' }}
+      sx={{ width: 180, bgcolor: '#404040', border: 'none', padding: 0 }}
     >
-      <CardOverflow>
-        <AspectRatio ratio="1" sx={{ width: 90, borderRadius: '50%' }}>
+      <div className="w-full flex flex-row items-center justify-between">
+        <CardOverflow sx={{ width: '40%' }}>
+          {/* <AspectRatio ratio="1" sx={{ width: 70, borderRadius: '50%' }}> */}
           <img
-            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
-            srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
+            className="w-16 h-auto rounded-full"
+            // src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
+            src={character.img}
+            // srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
             loading="lazy"
-            alt=""
+            // alt={props.name}
           />
-        </AspectRatio>
-      </CardOverflow>
-      <CardContent>
-        <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
-          {props.name}
-        </Typography>
-      </CardContent>
+          {/* </AspectRatio> */}
+        </CardOverflow>
+        <CardContent>
+          <Typography fontWeight="md" mb={0.5}>
+            <span className="text-white">{character.name}</span>
+          </Typography>
+        </CardContent>
+      </div>
     </Card>
   );
 }

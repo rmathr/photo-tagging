@@ -1,30 +1,41 @@
+import edward from '../components/assets/images/characters/edward.png';
+import brian from '../components/assets/images/characters/brian.png';
+import ash from '../components/assets/images/characters/ash.png';
+import link from '../components/assets/images/characters/link.png';
+import wilson from '../components/assets/images/characters/wilson.png';
+
 const characters = [
   {
     name: 'Edward Elric',
+    img: edward,
     found: false,
     xCoord: 1144,
     yCoord: 7380,
   },
   {
     name: 'Brian',
+    img: brian,
     found: false,
     xCoord: 275,
     yCoord: 5800,
   },
   {
     name: 'Ash',
+    img: ash,
     found: false,
     xCoord: 54,
     yCoord: 7060,
   },
   {
     name: 'Link',
+    img: link,
     found: false,
     xCoord: 450,
     yCoord: 7734,
   },
   {
     name: 'Wilson',
+    img: wilson,
     found: false,
     xCoord: 1610,
     yCoord: 8007,
