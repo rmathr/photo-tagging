@@ -39,25 +39,12 @@ const characters = [
 
 const MainContent = () => {
   const [clickedPoint, setClickedPoint] = useState(null);
+  const [circle, setCircle] = useState([]);
 
   const screenWidth = window.innerWidth;
   const screenHeight = screen.height;
   const radius = (0.032552 * screenWidth) / 2;
   const adjustY = -1.25 * radius + 0.07 * screenHeight;
-
-  let characterCircle = (
-    <div
-      className={`absolute rounded-full opacity-50 bg-green-700 z-10`}
-      style={{
-        width: 2 * radius,
-        height: 2 * radius,
-        top: characters[0].yCoord * (screenWidth / 1920) + 0.07 * screenHeight - radius,
-        left: characters[0].xCoord * (screenWidth / 1920) - radius,
-      }}
-    ></div>
-  );
-
-  const [circle, setCircle] = useState([]);
 
   const getMouseCoords = (e) => {
     const height = screen.height;
@@ -125,18 +112,10 @@ const MainContent = () => {
 
     // console.log(clickedCircle);
     console.log(checkIfContains(clickedCircle, characterCircle));
+    return checkIfContains(clickedCircle, characterCircle);
     // const width = window.innerWidth;
     // console.log(width);
     // alert(checkIfContains(circle1, circle2));
-  };
-
-  const circle1 = {
-    center: [280, 5797],
-    radius: 20,
-  };
-  const circle2 = {
-    center: [80, 5797],
-    radius: 10,
   };
 
   const checkIfContains = (circle1, circle2) => {

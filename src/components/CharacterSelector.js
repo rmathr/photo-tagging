@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, useContext, Suspense } from 'react';
 
 import Cards from './Cards';
 // const Cards = React.lazy(() => import('./Cards'));
@@ -9,6 +9,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 const CharacterSelector = (props) => {
+  //   const { char, setChar } = useContext(CharacterDataContext);
+
   const [contextMenu, setContextMenu] = useState(null);
   const [characters, setCharacters] = useState([...characterData]);
 
@@ -31,7 +33,15 @@ const CharacterSelector = (props) => {
       center: [character.xCoord, character.yCoord],
       radius: 1,
     };
-    props.verifyCharacter(characterCircle);
+    setCharacters(
+      characters.filter((char) => {
+        if (char.name === character.name) {
+          char.found = props.verifyCharacter(characterCircle);
+        }
+        return char;
+      })
+    );
+
     setContextMenu(null);
   };
 
