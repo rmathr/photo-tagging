@@ -15,8 +15,8 @@ const Timer = () => {
     handleReset,
   } = useTimer(0);
 
-  const [time, setTime] = useState(0);
-  const { gameInit, gameEnd } = useContext(CharacterDataContext);
+  //   const [time, setTime] = useState(0);
+  const { gameInit, gameEnd, time, setTime } = useContext(CharacterDataContext);
   //   console.log(gameInit);
 
   useEffect(() => {
@@ -24,30 +24,15 @@ const Timer = () => {
       handleStart();
     }
     if (gameEnd) {
-      //   handlePause()
-      //   time = time + +timer;
       setTime(timer);
-      //   console.log(time);
     }
   }, [gameInit, gameEnd]);
 
   return (
-    <div className="app">
-      <div className="stopwatch-card">
+    <div>
+      <div>
         {!gameEnd && <p>{formatTime(timer)}</p>}
         {gameEnd && <p>{formatTime(time)}</p>}
-        {/* <div className="buttons">
-          {!isActive && !isPaused ? (
-            <button onClick={handleStart}>Start</button>
-          ) : isPaused ? (
-            <button onClick={handlePause}>Pause</button>
-          ) : (
-            <button onClick={handleResume}>Resume</button>
-          )}
-          <button onClick={handleReset} disabled={!isActive}>
-            Reset
-          </button>
-        </div> */}
       </div>
     </div>
   );

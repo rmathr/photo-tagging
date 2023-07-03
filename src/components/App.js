@@ -1,11 +1,15 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useState, Suspense } from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './Header';
+import Home from './Home';
 import MainContent from './MainContent';
+// const MainContent = React.lazy(() => import('./MainContent'));
+import Leaderboard from './Leaderboard';
 import { getData } from './handleFirebaseData';
 import { CharacterDataContext } from './CharacterDataContext';
 import GameInit from './GameInit';
+import GameEnd from './GameEnd';
 
-// import characterData from './CharacterData';
 const characterData = await getData('characters');
 
 const App = () => {
@@ -17,32 +21,63 @@ const App = () => {
 
   const [gameInit, setGameInit] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
+  const [time, setTime] = useState(0);
 
   const handleClick = () => {
     setGameInit(true);
+  };
+
+  const resetGame = () => {
+    setGameInit(false);
+    setGameEnd(false);
+    setCharacters(
+      characters.filter((character) => {
+        character.found = false;
+        return character;
+      })
+    );
+    setTime(0);
   };
 
   const endGame = () => {
     setGameEnd(true);
   };
 
-  // console.log(characters);
   return (
-    <CharacterDataContext.Provider
-      value={{
-        characters,
-        setCharacters,
-        gameInit,
-        gameEnd,
-        setGameEnd,
-      }}
-    >
-      <div>
-        <Header start={gameInit} end={gameEnd} />
-        {!gameInit && <GameInit handleClick={handleClick} />}
-        {gameInit && <MainContent endGame={endGame} />}
-      </div>
-    </CharacterDataContext.Provider>
+    <HashRouter basename="/">
+      <CharacterDataContext.Provider
+        value={{
+          characters,
+          setCharacters,
+          gameInit,
+          gameEnd,
+          setGameEnd,
+          resetGame,
+          time,
+          setTime,
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/game"
+            element={
+              <div>
+                <Header start={gameInit} end={gameEnd} />
+                {!gameInit && <GameInit handleClick={handleClick} />}
+                {gameInit && (
+                  // <Suspense fallback={<div>Loading...</div>}>
+                  <MainContent endGame={endGame} />
+                  // </Suspense>
+                )}
+                {gameEnd && <GameEnd />}
+              </div>
+            }
+          />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+        </Routes>
+      </CharacterDataContext.Provider>
+    </HashRouter>
   );
 };
 
