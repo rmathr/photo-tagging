@@ -11,10 +11,10 @@ export default function Cards(props) {
     <Card
       orientation="horizontal"
       variant="outlined"
-      sx={{ width: 180, bgcolor: '#404040', border: 'none', padding: 0 }}
+      sx={{ width: 150, bgcolor: '#404040', border: 'none', padding: 0 }}
     >
       <div className="w-full flex flex-row items-center justify-between">
-        <CardOverflow sx={{ width: '40%' }}>
+        <CardOverflow sx={{ width: '30%' }}>
           <img
             className="w-16 h-auto rounded-full"
             src={character.img}

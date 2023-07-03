@@ -1,45 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import CharacterSelector from './CharacterSelector';
+import { CharacterDataContext } from './CharacterDataContext';
 
 import background from './assets/images/background.jpg';
 import background2 from './assets/images/background2.jpg';
 
-const characters = [
-  {
-    name: 'Edward Elric',
-    found: false,
-    xCoord: 1144,
-    yCoord: 7380,
-  },
-  {
-    name: 'Brian',
-    found: false,
-    xCoord: 275,
-    yCoord: 5800,
-  },
-  {
-    name: 'Ash',
-    found: false,
-    xCoord: 54,
-    yCoord: 7060,
-  },
-  {
-    name: 'Link',
-    found: false,
-    xCoord: 450,
-    yCoord: 7734,
-  },
-  {
-    name: 'Wilson',
-    found: false,
-    xCoord: 1610,
-    yCoord: 8007,
-  },
-];
-
 const MainContent = () => {
   const [clickedPoint, setClickedPoint] = useState(null);
   const [circle, setCircle] = useState([]);
+  const { characters, setCharacters } = useContext(CharacterDataContext);
+  let remainingCharacters = characters.filter((character) => !character.found);
 
   const screenWidth = window.innerWidth;
   const screenHeight = screen.height;
@@ -100,22 +70,13 @@ const MainContent = () => {
   }, [clickedPoint]);
 
   const verifyCharacter = (characterCircle) => {
-    const screenWidth = window.innerWidth;
-    const screenHeight = screen.height;
-    const radius = (0.032552 * screenWidth) / 2;
+    // const screenWidth = window.innerWidth;
+    // const screenHeight = screen.height;
+    // const radius = (0.032552 * screenWidth) / 2;
     const clickedCircle = addCircle(clickedPoint);
-    // const circle2 = {
-    //   center: [characters[2].xCoord, characters[2].yCoord - radius],
-    //   radius: 1,
-    // };
-    // const characterCircle = {...characterCircle}
 
-    // console.log(clickedCircle);
     console.log(checkIfContains(clickedCircle, characterCircle));
     return checkIfContains(clickedCircle, characterCircle);
-    // const width = window.innerWidth;
-    // console.log(width);
-    // alert(checkIfContains(circle1, circle2));
   };
 
   const checkIfContains = (circle1, circle2) => {
@@ -135,26 +96,28 @@ const MainContent = () => {
   };
 
   return (
-    <CharacterSelector
-      radius={radius}
-      getClickCoords={getClickCoords}
-      verifyCharacter={verifyCharacter}
-    >
-      <div className="w-full">
-        {circle}
-        {/* {characterCircle} */}
+    <>
+      <CharacterSelector
+        radius={radius}
+        getClickCoords={getClickCoords}
+        verifyCharacter={verifyCharacter}
+      >
+        <div className="w-full">
+          {remainingCharacters.length > 0 && circle}
+          {/* {characterCircle} */}
 
-        <img
-          src={background2}
-          id="image"
-          //   onClick={(e) => verifyCharacter(e)}
-          onClick={(e) => defineEvent(e)}
-          // onClick={(e) => getMouseCoords(e)}
-          className="relative"
-          style={{ width: '100vw', height: 'auto' }}
-        />
-      </div>
-    </CharacterSelector>
+          <img
+            src={background2}
+            id="image"
+            //   onClick={(e) => verifyCharacter(e)}
+            onClick={(e) => defineEvent(e)}
+            // onClick={(e) => getMouseCoords(e)}
+            className="relative"
+            style={{ width: '100vw', height: 'auto' }}
+          />
+        </div>
+      </CharacterSelector>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState, useContext, Suspense } from 'react';
+import { CharacterDataContext } from './CharacterDataContext';
 
 import Cards from './Cards';
 // const Cards = React.lazy(() => import('./Cards'));
@@ -9,10 +10,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 const CharacterSelector = (props) => {
-  //   const { char, setChar } = useContext(CharacterDataContext);
+  const { characters, setCharacters } = useContext(CharacterDataContext);
+  let remainingCharacters = characters.filter((character) => !character.found);
+  //   console.log(characters);
 
   const [contextMenu, setContextMenu] = useState(null);
-  const [characters, setCharacters] = useState([...characterData]);
+  //   const [characters, setCharacters] = useState([...characterData]);
 
   const handleContextMenu = (event) => {
     let dim = event.target.getBoundingClientRect();
@@ -65,28 +68,21 @@ const CharacterSelector = (props) => {
   return (
     <div onClick={handleContextMenu} style={{ cursor: 'context-menu' }}>
       {props.children}
-      <Menu
-        disableAutoFocusItem={true}
-        open={contextMenu !== null}
-        onClose={handleClose}
-        anchorReference="anchorPosition"
-        anchorPosition={
-          contextMenu !== null
-            ? // ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
-              { top: contextMenu.mouseY, left: contextMenu.mouseX }
-            : undefined
-        }
-        // anchorOrigin={{
-        //   vertical: 'bottom',
-        //   horizontal: 'left',
-        // }}
-        // transformOrigin={{
-        //   vertical: 'top',
-        //   horizontal: 'left',
-        // }}
-      >
-        {charCards}
-      </Menu>
+      {remainingCharacters.length > 0 && (
+        <Menu
+          disableAutoFocusItem={true}
+          open={contextMenu !== null}
+          onClose={handleClose}
+          anchorReference="anchorPosition"
+          anchorPosition={
+            contextMenu !== null
+              ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
+              : undefined
+          }
+        >
+          {charCards}
+        </Menu>
+      )}
     </div>
   );
 };
