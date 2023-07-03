@@ -5,11 +5,17 @@ import { CharacterDataContext } from './CharacterDataContext';
 import background from './assets/images/background.jpg';
 import background2 from './assets/images/background2.jpg';
 
-const MainContent = () => {
+const MainContent = (props) => {
   const [clickedPoint, setClickedPoint] = useState(null);
   const [circle, setCircle] = useState([]);
-  const { characters, setCharacters } = useContext(CharacterDataContext);
+  const { characters, setCharacters, setGameEnd } = useContext(CharacterDataContext);
+
   let remainingCharacters = characters.filter((character) => !character.found);
+  useEffect(() => {
+    if (remainingCharacters.length === 0) {
+      props.endGame();
+    }
+  }, [remainingCharacters]);
 
   const screenWidth = window.innerWidth;
   const screenHeight = screen.height;

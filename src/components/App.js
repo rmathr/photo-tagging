@@ -34,12 +34,13 @@ const App = () => {
         setCharacters,
         gameInit,
         gameEnd,
+        setGameEnd,
       }}
     >
       <div>
         <Header start={gameInit} end={gameEnd} />
         {!gameInit && <GameInit handleClick={handleClick} />}
-        {gameInit && <MainContent />}
+        {gameInit && <MainContent endGame={endGame} />}
       </div>
     </CharacterDataContext.Provider>
   );
