@@ -14,22 +14,24 @@ const Header = () => {
       >
         <img
           src={char.img}
-          className={`w-7 ${char.found ? 'grayscale' : 'grayscale-0'} `}
+          className={`w-9 ${char.found ? 'grayscale' : 'grayscale-0'} `}
         />
-        <p className="ml-2 text-sm">{char.name}</p>
+        <p className="ml-2 text-md">{char.name}</p>
       </div>
     );
   });
 
   return (
-    <div className="w-full h-[7dvh] bg-slate-700 text-white flex flex-row items-center justify-around">
+    <div className="w-full h-[10dvh] bg-black text-white flex flex-row items-center justify-around">
       <NavLink onClick={resetGame} to="/">
-        <p>Home</p>
+        <p className="uppercase">Home</p>
       </NavLink>
       <div className="w-[50%] flex flex-row items-center justify-around">
         {charDisplay}
       </div>
-      <Timer />
+      <div className="font-bold text-xl">
+        <Timer />
+      </div>
 
       {/* <img
         src="https://firebasestorage.googleapis.com/v0/b/phototagging-a690c.appspot.com/o/ash.png?alt=media&token=97cd221b-73f2-407b-ae2e-d2e09bfbaeee"

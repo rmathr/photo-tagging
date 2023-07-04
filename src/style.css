@@ -15,9 +15,10 @@ body::-webkit-scrollbar{
 body{
     width: 100%;
     height: auto;
-    /* overflow: hidden;
-    overflow-y: auto; */
-    background-color: blueviolet;
+    /* overflow: hidden; */
+    /* overflow-y: auto; */
+    /* background-color: #0e1621; */
+    background-color: #242424;
     /* background-image: url(./components/assets/images/background2.jpg);
     background-size:  100% auto;
     background-repeat: no-repeat; */

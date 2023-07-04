@@ -46,7 +46,7 @@ const MainContent = (props) => {
     const screenHeight = screen.height;
     const radius = (0.032552 * screenWidth) / 2;
 
-    const adjustY = -1.25 * radius + 0.07 * screenHeight;
+    const adjustY = -1.25 * radius + 0.1 * screenHeight;
 
     let newCircle = (
       <div
