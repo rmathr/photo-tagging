@@ -50,7 +50,7 @@ const MainContent = (props) => {
 
     let newCircle = (
       <div
-        className={`absolute rounded-full opacity-50 bg-red-600 z-10`}
+        className={`absolute rounded-full  z-10 border-dashed border-4 border-red-600`}
         // onClick={(e) => handleClick(e)}
         style={{
           width: 2 * radius,

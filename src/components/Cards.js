@@ -11,7 +11,15 @@ export default function Cards(props) {
     <Card
       orientation="horizontal"
       variant="outlined"
-      sx={{ width: 150, bgcolor: '#404040', border: 'none', padding: 0 }}
+      sx={{
+        minWidth: 180,
+        bgcolor: '#404040',
+        border: 'none',
+        padding: 0,
+        '&:hover': {
+          background: '#1A7D36',
+        },
+      }}
     >
       <div className="w-full flex flex-row items-center justify-between">
         <CardOverflow sx={{ width: '30%' }}>
@@ -22,9 +30,10 @@ export default function Cards(props) {
             // alt={props.name}
           />
         </CardOverflow>
+        <span className="p-2"></span>
         <CardContent>
           <Typography fontWeight="md" mb={0.5}>
-            <span className="text-white">{character.name}</span>
+            <span className="text-white text-sm">{character.name}</span>
           </Typography>
         </CardContent>
       </div>

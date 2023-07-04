@@ -24,3 +24,8 @@ body{
     background-repeat: no-repeat; */
 }
 
+.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list{
+    /* padding-top: 0;
+    padding-bottom: 0; */
+    background-color: black;
+}
