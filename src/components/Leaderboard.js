@@ -26,14 +26,19 @@ const Leaderboard = () => {
 
   return (
     <>
-      <div className="top-0 fixed w-full h-[10dvh] bg-black text-white flex flex-row items-center justify-around">
+      <div className="top-0 fixed w-full h-[10dvh] bg-black text-white flex flex-row items-center justify-around uppercase">
         <NavLink to="/">
-          <p className="uppercase">Home</p>
+          <p className="">Home</p>
         </NavLink>
-        Info
+        <p className="min-w-[135px] text-3xl">
+          Where's... <span className="text-red-800 italic font-bold">Everyone?</span>
+        </p>
+        <NavLink to="/about">
+          <p className="">About</p>
+        </NavLink>
       </div>
       <div className="h-[10vh]"></div>
-      <div className="m-16 w-full flex flex-col items-center justify-center">
+      <div className="m-16 max-w-full flex flex-col items-center justify-center">
         <div className="min-w-[70%] shadow-lg shadow-black">
           <LeaderboardTable leaderboard={orderedLeaderboard} />
         </div>

@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import MainContent from './MainContent';
+import About from './About';
 // const MainContent = React.lazy(() => import('./MainContent'));
 import Leaderboard from './Leaderboard';
 import { getData } from './handleFirebaseData';
@@ -75,6 +76,7 @@ const App = () => {
             }
           />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </CharacterDataContext.Provider>
     </HashRouter>
