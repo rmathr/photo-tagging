@@ -26,37 +26,6 @@ const createDocument = (collectionName, document) => {
   return addDoc(colRef, document);
 };
 
-const leaderboard = [
-  {
-    username: 'rmath',
-    time: 10,
-    date: '07/03/2023',
-  },
-  {
-    username: 'craque susu',
-    time: 2,
-    date: '03/07/2023',
-  },
-  {
-    username: 'galo cego',
-    time: 153,
-    date: '08/01/2023',
-  },
-];
-
-// leaderboard.map((item) => createDocument('leaderboard', item));
-
-// characters.map(async (item) => {
-//   await setDoc(doc(db, 'characters', item.name), {
-//     name: item.name,
-//     id: item.id,
-//     xCoord: item.xCoord,
-//     yCoord: item.yCoord,
-//   });
-// });
-
-// db.setDoc(characters);
-
 async function getData(colName) {
   const col = collection(db, colName);
   const colSnapshot = await getDocs(col);
@@ -68,11 +37,5 @@ function addData(document, collectionName) {
   const colRef = collection(db, collectionName);
   return addDoc(colRef, document);
 }
-
-const teste = await getData('characters');
-
-// console.log('??');
-
-// console.log(teste);
 
 export { getData, addData };

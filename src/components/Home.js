@@ -17,7 +17,9 @@ const Home = () => {
         <p className="min-w-[135px] text-3xl">
           Where's... <span className="text-red-800 italic font-bold">Everyone?</span>
         </p>
-        <p className="min-w-[135px]">About</p>
+        <NavLink to="/about">
+          <p className="min-w-[135px]">About</p>
+        </NavLink>
       </div>
       <div className="w-full h-[90dvh] flex flex-col items-center pt-6">
         <GradientCover>

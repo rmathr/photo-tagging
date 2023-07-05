@@ -15,37 +15,27 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
     border: 'none',
-    // borderColor: '#EFEFEF',
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
     border: 'none',
     color: theme.palette.common.white,
-    // borderColor: '#EFEFEF',
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    // backgroundColor: theme.palette.action.hover,
     backgroundColor: '#303030',
   },
   '&:nth-of-type(even)': {
-    // backgroundColor: theme.palette.action.hover,
     backgroundColor: '#242424',
   },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    // border: 0,
-  },
+  '&:last-child td, &:last-child th': {},
 }));
 
 function createData(order, name, time, date) {
   return { order, name, time, date };
 }
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
 
 export default function LeaderboardTable(props) {
   const leaderboard = [...props.leaderboard];
@@ -57,13 +47,6 @@ export default function LeaderboardTable(props) {
       `${user.date}`
     );
   });
-  //   const rows = [
-  //     createData('Frozen yoghurt', 159, 6.0),
-  //     createData('Ice cream sandwich', 237, 9.0),
-  //     createData('Eclair', 262, 16.0),
-  //     createData('Cupcake', 305, 3.7),
-  //     createData('Gingerbread', 356, 16.0),
-  //   ];
 
   return (
     <TableContainer component={Paper}>
@@ -89,7 +72,6 @@ export default function LeaderboardTable(props) {
                 {row.date === undefined
                   ? row.date
                   : format(new Date(row.date), "MMM dd',' yyyy")}
-                {/* {row.date} */}
               </StyledTableCell>
             </StyledTableRow>
           ))}

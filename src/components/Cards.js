@@ -27,7 +27,7 @@ export default function Cards(props) {
             className="w-16 h-auto rounded-full"
             src={character.img}
             loading="lazy"
-            // alt={props.name}
+            alt={character.name}
           />
         </CardOverflow>
         <span className="p-2"></span>

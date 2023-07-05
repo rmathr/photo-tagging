@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif !important; 
 }
 
 body::-webkit-scrollbar{
@@ -15,17 +18,9 @@ body::-webkit-scrollbar{
 body{
     width: 100%;
     height: auto;
-    /* overflow: hidden; */
-    /* overflow-y: auto; */
-    /* background-color: #0e1621; */
     background-color: #242424;
-    /* background-image: url(./components/assets/images/background2.jpg);
-    background-size:  100% auto;
-    background-repeat: no-repeat; */
 }
 
 .MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list{
-    /* padding-top: 0;
-    padding-bottom: 0; */
     background-color: black;
 }

@@ -15,9 +15,7 @@ const Timer = () => {
     handleReset,
   } = useTimer(0);
 
-  //   const [time, setTime] = useState(0);
   const { gameInit, gameEnd, time, setTime } = useContext(CharacterDataContext);
-  //   console.log(gameInit);
 
   useEffect(() => {
     if (gameInit) {

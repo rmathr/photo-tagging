@@ -1,10 +1,9 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import MainContent from './MainContent';
 import About from './About';
-// const MainContent = React.lazy(() => import('./MainContent'));
 import Leaderboard from './Leaderboard';
 import { getData } from './handleFirebaseData';
 import { CharacterDataContext } from './CharacterDataContext';
@@ -66,11 +65,7 @@ const App = () => {
               <div>
                 <Header start={gameInit} end={gameEnd} />
                 {!gameInit && <GameInit handleClick={handleClick} />}
-                {gameInit && (
-                  // <Suspense fallback={<div>Loading...</div>}>
-                  <MainContent endGame={endGame} />
-                  // </Suspense>
-                )}
+                {gameInit && <MainContent endGame={endGame} />}
                 {gameEnd && <GameEnd />}
               </div>
             }

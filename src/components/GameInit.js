@@ -31,7 +31,6 @@ const GameInit = (props) => {
         >
           Start
         </Button>
-        {/* <button onClick={props.handleClick}>Start</button> */}
       </div>
     </div>
   );

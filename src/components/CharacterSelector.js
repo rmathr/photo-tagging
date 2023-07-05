@@ -1,21 +1,14 @@
 import React, { useState, useContext, Suspense } from 'react';
 import { CharacterDataContext } from './CharacterDataContext';
-
 import Cards from './Cards';
-// const Cards = React.lazy(() => import('./Cards'));
-
-import characterData from './CharacterData';
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 const CharacterSelector = (props) => {
   const { characters, setCharacters } = useContext(CharacterDataContext);
   let remainingCharacters = characters.filter((character) => !character.found);
-  //   console.log(characters);
 
   const [contextMenu, setContextMenu] = useState(null);
-  //   const [characters, setCharacters] = useState([...characterData]);
 
   const handleContextMenu = (event) => {
     let dim = event.target.getBoundingClientRect();
@@ -48,7 +41,6 @@ const CharacterSelector = (props) => {
     setContextMenu(null);
   };
 
-  // -------------------------------------------------------
   const charsArray = [...characters];
   let charCards = charsArray
     .filter((character) => !character.found)
@@ -59,9 +51,7 @@ const CharacterSelector = (props) => {
         onClick={() => handleClose(character)}
       >
         {' '}
-        {/* <Suspense fallback={<div>Loading...</div>}> */}
         <Cards character={character} />
-        {/* </Suspense> */}
       </MenuItem>
     ));
 

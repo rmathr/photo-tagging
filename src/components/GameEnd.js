@@ -26,8 +26,6 @@ const GameEnd = (props) => {
       date: `${format(new Date(), 'MM/dd/yyyy')}`,
     };
     addData(userData, 'leaderboard');
-    console.log(userData);
-    // props.saveInputValue(formData);
     setUsername('');
     setTime(0);
     navigate('/leaderboard');
