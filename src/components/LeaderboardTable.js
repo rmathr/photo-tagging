@@ -86,7 +86,9 @@ export default function LeaderboardTable(props) {
               <StyledTableCell>{row.name}</StyledTableCell>
               <StyledTableCell align="center">{row.time}</StyledTableCell>
               <StyledTableCell align="center">
-                {format(new Date(row.date), "MMM dd',' yyyy")}
+                {row.date === undefined
+                  ? row.date
+                  : format(new Date(row.date), "MMM dd',' yyyy")}
                 {/* {row.date} */}
               </StyledTableCell>
             </StyledTableRow>

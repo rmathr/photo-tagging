@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { CharacterDataContext } from './CharacterDataContext';
 import { addData } from './handleFirebaseData';
 import { format } from 'date-fns';
+import Filter from 'bad-words';
 import Button from '@mui/joy/Button';
 
 const GameEnd = (props) => {
@@ -17,9 +18,10 @@ const GameEnd = (props) => {
   };
 
   const onSubmitForm = (e) => {
+    const customFilter = new Filter({ placeHolder: 'x' });
     e.preventDefault();
     const userData = {
-      username: username,
+      username: customFilter.clean(username),
       time: time,
       date: `${format(new Date(), 'MM/dd/yyyy')}`,
     };

@@ -8,43 +8,21 @@ const leaderboardData = await getData('leaderboard');
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([...leaderboardData]);
-  // const [leaderboard, setLeaderboard] = useState(
-  //   _.sortBy([...leaderboardData], (obj) => parseInt(obj.time, 10)).map((item, index) => {
-  //     item.order = index + 1;
-  //     return item;
-  //   })
-  // );
 
-  const [orderedLeaderboard, setOrderedLeaderboard] = useState(
-    _.sortBy([...leaderboard], (obj) => parseInt(obj.time, 10)).map((item, index) => {
-      item.order = index + 1;
-      return item;
-    })
-  );
-  // console.log(leaderboard);
+  const orderedLeaderboard = _.sortBy([...leaderboard], (obj) =>
+    parseInt(obj.time, 10)
+  ).map((item, index) => {
+    item.order = index + 1;
+    return item;
+  });
 
   const updateLeaderboard = async () => {
     setLeaderboard(await getData('leaderboard'));
   };
 
-  const updateOrderedLeaderboard = () => {
-    let leaderTable = [...leaderboard];
-    let sortedLeaderTable = _.sortBy(leaderTable, (obj) => parseInt(obj.time, 10));
-    let finalLeaderTable = sortedLeaderTable.map((item, index) => {
-      item.order = index + 1;
-      return item;
-    });
-    setOrderedLeaderboard(finalLeaderTable);
-  };
-
   useEffect(() => {
     updateLeaderboard();
-    updateOrderedLeaderboard();
   }, []);
-
-  // useEffect(() => {
-
-  // }, [leaderboard]);
 
   return (
     <>
