@@ -4,7 +4,7 @@
 
 <h2>🚀 Demo</h2>
 
-[https://photo-tagging-fgpg1rd0t-rmathr.vercel.app/#/](https://photo-tagging-fgpg1rd0t-rmathr.vercel.app/#/)
+[https://photo-tagging-hwpwkofdp-rmathr.vercel.app/#/](https://photo-tagging-hwpwkofdp-rmathr.vercel.app/#/)
 
 <h2>Project Screenshots:</h2>
 <div>
