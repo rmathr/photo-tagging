@@ -58,7 +58,7 @@ const App = () => {
         }}
       >
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home resetGame={resetGame} />} />
           <Route
             path="/game"
             element={
@@ -66,7 +66,7 @@ const App = () => {
                 <Header start={gameInit} end={gameEnd} />
                 {!gameInit && <GameInit handleClick={handleClick} />}
                 {gameInit && <MainContent endGame={endGame} />}
-                {gameEnd && <GameEnd />}
+                {gameEnd && time > 0 && <GameEnd />}
               </div>
             }
           />

@@ -21,6 +21,7 @@ body{
     background-color: #242424;
 }
 
-.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list{
-    background-color: black;
+ul{
+    padding: 0;
+    background-color: black !important;  
 }

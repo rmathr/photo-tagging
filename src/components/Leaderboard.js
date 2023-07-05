@@ -9,7 +9,7 @@ const leaderboardData = await getData('leaderboard');
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([...leaderboardData]);
 
-  const orderedLeaderboard = _.sortBy([...leaderboard], (obj) =>
+  let orderedLeaderboard = _.sortBy([...leaderboard], (obj) =>
     parseInt(obj.time, 10)
   ).map((item, index) => {
     item.order = index + 1;
@@ -20,8 +20,20 @@ const Leaderboard = () => {
     setLeaderboard(await getData('leaderboard'));
   };
 
+  const updateOrderedLeaderboard = () => {
+    const orderedLeaderboard = _.sortBy([...leaderboard], (obj) =>
+      parseInt(obj.time, 10)
+    ).map((item, index) => {
+      item.order = index + 1;
+      return item;
+    });
+    return orderedLeaderboard;
+  };
+
   useEffect(() => {
-    updateLeaderboard();
+    updateLeaderboard().then(() => {
+      orderedLeaderboard = updateOrderedLeaderboard();
+    });
   }, []);
 
   return (
