@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
@@ -7,7 +7,13 @@ import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import background2 from './assets/images/background2.jpg';
 
-const Home = () => {
+const Home = (props) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    props.resetGame();
+  }, []);
+
   return (
     <>
       <div className="w-full h-[10dvh] bg-black text-white flex flex-row items-center justify-around uppercase">
@@ -23,8 +29,13 @@ const Home = () => {
       </div>
       <div className="w-full h-[90dvh] flex flex-col items-center pt-6">
         <GradientCover>
-          <Button size="md" variant="solid" color="success">
-            <NavLink to="/game">Play now</NavLink>
+          <Button
+            onClick={() => navigate('/game')}
+            size="md"
+            variant="solid"
+            color="success"
+          >
+            Play now
           </Button>
         </GradientCover>
       </div>
